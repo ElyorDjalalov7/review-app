@@ -1,12 +1,13 @@
 // prisma/seed.ts
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 const reviews = [
   {
     title: "Amazing Phone Experience",
-    content: "The new smartphone exceeds all expectations. Battery life is exceptional.",
+    content:
+      "The new smartphone exceeds all expectations. Battery life is exceptional.",
     rating: 5,
     author: "John Smith",
   },
@@ -18,7 +19,8 @@ const reviews = [
   },
   {
     title: "Disappointing Movie",
-    content: "The plot was predictable and acting was subpar. Would not recommend.",
+    content:
+      "The plot was predictable and acting was subpar. Would not recommend.",
     rating: 2,
     author: "David Chen",
   },
@@ -123,20 +125,20 @@ const reviews = [
     content: "Beautiful location, excellent service, and amazing food.",
     rating: 5,
     author: "Jessica Thompson",
-  }
+  },
 ];
 
 async function main() {
-  console.log('Start seeding...');
-  
+  console.log("Start seeding...");
+
   for (const review of reviews) {
     const result = await prisma.review.create({
       data: review,
     });
     console.log(`Created review with id: ${result.id}`);
   }
-  
-  console.log('Seeding finished.');
+
+  console.log("Seeding finished.");
 }
 
 main()
