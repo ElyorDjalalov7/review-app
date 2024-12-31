@@ -173,3 +173,4 @@ Seed the database with at least 20 varied reviews.
   - Backend (Express + Prisma) code
   - `README.md` and `AI_USAGE.md` files
 - Be prepared to discuss your architectural choices, AI usage strategy, and any trade-offs made in a follow-up conversation.
+-***************************

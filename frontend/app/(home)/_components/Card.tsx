@@ -48,7 +48,7 @@ export default function Card({ review, onEdit, onDelete }: CardProps) {
           {onDelete && (
             <button
               onClick={() => onDelete(review.id)}
-              className="px-3 py-1 text-sm text-secondary hover:text-secondary/80 transition-colors"
+              className="px-3 py-1 text-sm text-red-500 hover:text-secondary/80 transition-colors"
             >
               Delete
             </button>

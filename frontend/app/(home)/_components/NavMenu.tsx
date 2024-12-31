@@ -2,12 +2,9 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const menuItems = [
-  { name: "Dashboard", href: "/" },
-  { name: "Details", href: "/details" },
-];
+const menuItems = [{ name: "Dashboard", href: "/" }];
 function NavMenu() {
-  const currentPath = usePathname(); 
+  const currentPath = usePathname();
 
   return (
     <nav className="flex items-center space-x-6">

@@ -1,42 +1,37 @@
+// store/reviewStore.ts
 import { create } from "zustand";
 
-interface Filters {
-  search?: string;
-  author?: string;
-  rating?: number;
-}
-
 interface ReviewStore {
-  filters: Filters;
+  filters: {
+    titleSearch: string;
+    author: string;
+    rating: number | null;
+  };
   page: number;
-
-  setFilters: (filters: Filters) => void;
   setPage: (page: number) => void;
+  setFilters: (filters: Partial<ReviewStore["filters"]>) => void;
   resetFilters: () => void;
 }
 
 export const useReviewStore = create<ReviewStore>((set) => ({
   filters: {
-    search: undefined,
-    author: undefined,
-    rating: undefined,
+    titleSearch: "",
+    author: "",
+    rating: null,
   },
   page: 1,
-
-  setFilters: (filters) =>
-    set((state) => ({
-      filters: { ...state.filters, ...filters },
-      page: 1, // Reset page when filters change
-    })),
-
   setPage: (page) => set({ page }),
-
+  setFilters: (newFilters) =>
+    set((state) => ({
+      filters: { ...state.filters, ...newFilters },
+      page: 1,
+    })),
   resetFilters: () =>
     set({
       filters: {
-        search: undefined,
-        author: undefined,
-        rating: undefined,
+        titleSearch: "",
+        author: "",
+        rating: null,
       },
       page: 1,
     }),

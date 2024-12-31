@@ -1,57 +1,54 @@
-import { useReviewStore } from "@/store/reviewStore";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-
+// ReviewPagination.tsx
 interface ReviewPaginationProps {
+  currentPage: number;
   totalItems: number;
   itemsPerPage: number;
+  onPageChange: (page: number) => void;
 }
 
 export default function ReviewPagination({
+  currentPage,
   totalItems,
   itemsPerPage,
+  onPageChange,
 }: ReviewPaginationProps) {
-  const { page, setPage } = useReviewStore();
-  const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
-
-  // Ensure current page is valid
-  if (page > totalPages) {
-    setPage(totalPages);
-  }
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   if (totalPages <= 1) return null;
 
   return (
-    <div className="flex items-center justify-center gap-2 mt-8">
+    <div className="flex items-center justify-center gap-2 py-4">
       <button
-        onClick={() => setPage(page - 1)}
-        disabled={page === 1}
-        className="p-2 rounded-md hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed"
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+        className="px-3 py-1 rounded-md bg-gray-100 dark:bg-gray-800 disabled:opacity-50"
       >
-        <ChevronLeft className="h-5 w-5" />
+        Previous
       </button>
 
-      <div className="flex items-center gap-1">
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+      {[...Array(totalPages)].map((_, index) => {
+        const pageNumber = index + 1;
+        return (
           <button
-            key={pageNum}
-            onClick={() => setPage(pageNum)}
+            key={pageNumber}
+            onClick={() => onPageChange(pageNumber)}
             className={`px-3 py-1 rounded-md ${
-              pageNum === page
-                ? "bg-primary text-primary-foreground"
-                : "hover:bg-muted"
+              currentPage === pageNumber
+                ? "bg-blue-500 text-white"
+                : "bg-gray-100 dark:bg-gray-800"
             }`}
           >
-            {pageNum}
+            {pageNumber}
           </button>
-        ))}
-      </div>
+        );
+      })}
 
       <button
-        onClick={() => setPage(page + 1)}
-        disabled={page === totalPages}
-        className="p-2 rounded-md hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed"
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className="px-3 py-1 rounded-md bg-gray-100 dark:bg-gray-800 disabled:opacity-50"
       >
-        <ChevronRight className="h-5 w-5" />
+        Next
       </button>
     </div>
   );
