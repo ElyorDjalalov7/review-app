@@ -12,7 +12,7 @@ function layout({ children }: { children: React.ReactNode }) {
         <ModeToggle />
       </header>
 
-      <main className="overflow-auto container bg-slate-700">
+      <main className="overflow-auto container bg-muted">
         <div className="flex-1 py-4">{children}</div>
       </main>
     </div>

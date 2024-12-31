@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,7 +7,7 @@ const menuItems = [
   { name: "Details", href: "/details" },
 ];
 function NavMenu() {
-  const currentPath = usePathname(); // Get the current path
+  const currentPath = usePathname(); 
 
   return (
     <nav className="flex items-center space-x-6">
@@ -36,9 +34,3 @@ function NavMenu() {
 }
 
 export default NavMenu;
-
-{
-  /* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16"></div>
-      </div> */
-}
